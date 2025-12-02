@@ -334,16 +334,12 @@ section {
 }
 
 .app-download-content {
-    display: flex;
-    justify-content: space-between; /* Distribui o espaço entre o texto e o celular */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     align-items: center;
-    gap: 40px; /* Espaçamento entre os dois elementos */
-}
-
-/* Opcional: Garante que o texto ocupe um pouco mais de espaço */
-.app-download-text {
-    flex: 1; 
-    max-width: 550px;
+    position: relative;
+    z-index: 1;
 }
 
 .app-download-text h2 {
