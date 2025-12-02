@@ -3382,19 +3382,19 @@ section {
         bottom: 20px;
         font-size: 14px;
         padding: 8px 16px;
+
+
+       .app-download-visual {
+
+    max-width: 100%;
+  
+    overflow-x: hidden;
+}
+ 
+.phone-mockup {
+    max-width: 100%;
+   
     }
 }
 
 
-/* Correção de Layout/Resolução (Overflow) */
-.app-download-visual {
-    /* Força o elemento a não exceder o espaço da coluna */
-    max-width: 100%;
-    /* Corta qualquer conteúdo que tente transbordar horizontalmente (como o efeito 3D) */
-    overflow-x: hidden;
-}
-
-/* Certifique-se de que a imagem do celular também respeite seu contêiner */
-.phone-mockup {
-    max-width: 100%;
-}
