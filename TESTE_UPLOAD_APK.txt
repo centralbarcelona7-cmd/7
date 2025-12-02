@@ -1,0 +1,153 @@
+🔧 TESTE UPLOAD APK - DEBUGGING
+================================
+
+✅ SISTEMA DE TESTE CRIADO!
+
+🎯 PROBLEMA:
+-------------
+APK não está salvando nem aparecendo
+Necessário identificar o problema
+
+🔧 ARQUIVOS DE TESTE CRIADOS:
+------------------------------
+
+### 1. **teste_simples.php:**
+```
+📄 teste_simples.php - Testa PHP e upload básico
+```
+**Acesse:** http://localhost/LEILAO/teste_simples.php
+
+### 2. **upload_simples.php:**
+```
+📄 upload_simples.php - Upload super simples com logs
+```
+**Usado pelo admin.js agora**
+
+🧪 COMO TESTAR:
+---------------
+
+### **PASSO 1 - Teste Básico:**
+1. ✅ Acesse: `http://localhost/LEILAO/teste_simples.php`
+2. ✅ Deve mostrar:
+   ```
+   PHP funcionando!
+   Pasta apk já existe!
+   Pasta apk tem permissão de escrita!
+   ```
+3. ✅ Teste upload direto no formulário da página
+
+### **PASSO 2 - Teste no Admin:**
+1. ✅ Abra admin → "APK do App"
+2. ✅ Faça upload do APK
+3. ✅ Deve aparecer alert: "APK salvo com sucesso na pasta apk!"
+4. ✅ Abra console (F12) e veja logs
+
+### **PASSO 3 - Verificar Arquivos:**
+1. ✅ Verifique se existe: pasta apk/app.apk
+2. ✅ Verifique se existe: apk/info.txt
+
+### **PASSO 4 - Verificar Resposta:**
+**No console (F12) deve aparecer:**
+```
+Upload iniciado: Assinatura.apk
+Resposta do servidor: Arquivo recebido: Assinatura.apk
+Tamanho: 7340032 bytes
+Erro: 0
+✅ APK salvo com sucesso em: apk/app.apk
+✅ Informações salvas!
+```
+
+🔍 POSSÍVEIS PROBLEMAS:
+-----------------------
+
+### **1. PHP NÃO FUNCIONA:**
+- ❌ teste_simples.php não carrega
+- **Solução:** Verificar se XAMPP está rodando
+
+### **2. PASTA SEM PERMISSÃO:**
+- ❌ "Pasta apk SEM permissão de escrita"
+- **Solução:** Recriar pasta ou dar permissão
+
+### **3. ERRO NO UPLOAD:**
+- ❌ Erro diferente de 0
+- **Solução:** Verificar configurações PHP
+
+### **4. FETCH FALHA:**
+- ❌ "Failed to fetch"
+- **Solução:** Acessar via localhost, não file://
+
+### **5. RESPOSTA VAZIA:**
+- ❌ Resposta do servidor vazia
+- **Solução:** Verificar se upload_simples.php existe
+
+🧪 TESTE PASSO A PASSO:
+-----------------------
+
+### **TESTE 1 - PHP Funciona?**
+1. ✅ Acesse `http://localhost/LEILAO/teste_simples.php`
+2. ✅ Deve mostrar que PHP funciona
+3. ✅ Deve mostrar permissões da pasta
+
+### **TESTE 2 - Upload Direto:**
+1. ✅ Use o formulário na página teste_simples.php
+2. ✅ Selecione APK e clique "Testar Upload"
+3. ✅ Deve mostrar informações do arquivo
+
+### **TESTE 3 - Upload pelo Admin:**
+1. ✅ Abra admin → "APK do App"
+2. ✅ Faça upload do APK
+3. ✅ Veja alert e console
+
+### **TESTE 4 - Verificar Resultado:**
+1. ✅ Verifique pasta apk/ no Windows Explorer
+2. ✅ Deve ter app.apk e info.txt
+
+💡 SOLUÇÕES RÁPIDAS:
+--------------------
+
+### **SE PHP NÃO FUNCIONA:**
+```bash
+# Iniciar XAMPP
+# Acessar http://localhost
+```
+
+### **SE SEM PERMISSÃO:**
+```bash
+# Deletar pasta apk/ e recriar
+# Ou dar permissão total
+```
+
+### **SE ERRO NO UPLOAD:**
+```php
+// Verificar php.ini:
+upload_max_filesize = 100M
+post_max_size = 100M
+```
+
+### **SE FETCH FALHA:**
+- ✅ Acessar via `http://localhost/LEILAO/`
+- ❌ NÃO via `file://`
+
+🎯 RESULTADO ESPERADO:
+----------------------
+
+### **✅ FUNCIONANDO:**
+- teste_simples.php mostra tudo OK
+- Upload no admin mostra alert de sucesso
+- Pasta apk/ tem app.apk
+- Console mostra resposta do servidor
+
+### **❌ COM ERRO:**
+- Logs mostram erro específico
+- Fácil identificar problema
+- Solução direcionada
+
+📱 TESTE E ME INFORME! 📱✨
+
+**Agora temos teste completo:**
+1. Teste teste_simples.php primeiro
+2. Teste upload no admin
+3. Me informe o que aparece
+
+🔧 DEBUG COMPLETO IMPLEMENTADO! 🔧
+

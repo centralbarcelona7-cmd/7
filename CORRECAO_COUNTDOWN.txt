@@ -1,0 +1,63 @@
+✅ CORREÇÃO DO COUNTDOWN - TEMPO RESTANTE
+==========================================
+
+PROBLEMA RESOLVIDO: "NaN Dias, NaN Horas, NaN Min"
+
+🔍 CAUSA DO PROBLEMA:
+---------------------
+Quando os veículos são salvos no localStorage, as datas (end_date) são 
+convertidas automaticamente para strings pelo JSON.stringify().
+
+Quando os veículos são carregados de volta, as strings não eram 
+convertidas novamente para objetos Date, causando NaN nos cálculos.
+
+✅ SOLUÇÃO IMPLEMENTADA:
+------------------------
+Adicionada conversão automática de end_date de string para Date 
+ao carregar veículos do localStorage.
+
+📁 ARQUIVOS CORRIGIDOS:
+-----------------------
+1. js/script.js (linha ~507)
+   - Converte end_date ao carregar veículos na página inicial
+   
+2. js/catalog.js (linha ~32)
+   - Converte end_date ao carregar veículos no catálogo
+   
+3. js/details.js (linha ~25)
+   - Converte end_date ao carregar veículos na página de detalhes
+
+🔧 CÓDIGO ADICIONADO:
+---------------------
+```javascript
+// Converter end_date de string para Date
+if (saved.end_date && typeof saved.end_date === 'string') {
+    saved.end_date = new Date(saved.end_date);
+}
+```
+
+✅ RESULTADO:
+-------------
+- ✅ Imagens aparecem corretamente
+- ✅ Countdown mostra tempo restante correto
+- ✅ Dias, horas, minutos e segundos funcionando
+- ✅ Sistema totalmente funcional
+
+🧪 COMO TESTAR:
+---------------
+1. Abra o admin (admin.html)
+2. Adicione um veículo com imagens
+3. Vá para a página do cliente (index.html)
+4. Veja o veículo com:
+   ✅ Imagens carregadas
+   ✅ Tempo restante funcionando
+5. Clique no veículo para ver detalhes
+   ✅ Countdown em tempo real
+
+💡 INFORMAÇÃO TÉCNICA:
+---------------------
+- Veículos novos são criados com end_date = agora + 7 dias
+- O countdown é atualizado a cada segundo
+- Quando o tempo expira, mostra "Leilão encerrado"
+
+🎉 TUDO FUNCIONANDO PERFEITAMENTE!

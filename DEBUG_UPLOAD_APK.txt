@@ -1,0 +1,171 @@
+🔧 DEBUG - ERRO AO ENVIAR APK
+==============================
+
+✅ SISTEMA DE DEBUG IMPLEMENTADO!
+
+🎯 PROBLEMA:
+-------------
+"Erro ao enviar APK" aparecendo
+Necessário identificar causa
+
+🔧 DEBUG IMPLEMENTADO:
+----------------------
+
+### 1. **ARQUIVO test_php.php:**
+```
+📄 test_php.php - Testa se PHP funciona
+```
+**Acesse:** http://localhost/LEILAO/test_php.php
+
+### 2. **LOGS DETALHADOS:**
+- ✅ **upload_apk.php** - Logs no error_log do PHP
+- ✅ **admin.js** - Logs detalhados no console
+- ✅ **Response status** - Código HTTP
+- ✅ **Response text** - Resposta do servidor
+
+### 3. **VERIFICAÇÕES:**
+- ✅ **Pasta apk/** existe?
+- ✅ **Permissões** de escrita?
+- ✅ **Configurações PHP** corretas?
+
+🧪 COMO DEBUGAR:
+----------------
+
+### **PASSO 1 - Testar PHP:**
+1. ✅ Acesse: `http://localhost/LEILAO/test_php.php`
+2. ✅ Deve mostrar:
+   ```
+   PHP está funcionando!
+   ✅ Pasta 'apk' já existe
+   ✅ Pasta 'apk' tem permissão de escrita
+   upload_max_filesize: 64M
+   post_max_size: 64M
+   ```
+
+### **PASSO 2 - Tentar Upload:**
+1. ✅ Abra admin → "APK do App"
+2. ✅ Faça upload do APK
+3. ✅ Abra console (F12)
+4. ✅ Veja logs detalhados
+
+### **PASSO 3 - Verificar Logs:**
+**Console (F12):**
+```
+[DEBUG] Response status: 200
+[DEBUG] Response text: {"success":true,"message":"APK salvo com sucesso!"}
+[SUCCESS] APK salvo: Assinatura.apk (7.00 MB)
+```
+
+**OU se erro:**
+```
+[ERROR] Erro na requisição: TypeError: Failed to fetch
+[ERROR] Response status: 500
+[ERROR] Response text: {"success":false,"message":"Erro ao salvar arquivo"}
+```
+
+### **PASSO 4 - Verificar Logs PHP:**
+**Arquivo de log do XAMPP:**
+```
+=== UPLOAD APK DEBUG ===
+REQUEST_METHOD: POST
+FILES data: Array ( [apk_file] => Array ( [name] => Assinatura.apk [size] => 7340032 ) )
+✅ APK salvo com sucesso: apk/app.apk
+```
+
+**OU se erro:**
+```
+❌ Erro ao mover arquivo: /tmp/phpXXXXXX para apk/app.apk
+❌ Erro: Array ( [type] => 2 [message] => mkdir(): Permission denied )
+```
+
+🔍 POSSÍVEIS CAUSAS:
+--------------------
+
+### **1. PHP NÃO FUNCIONA:**
+- ❌ test_php.php não carrega
+- **Solução:** Verificar se XAMPP está rodando
+
+### **2. PASTA SEM PERMISSÃO:**
+- ❌ "Pasta 'apk' NÃO tem permissão de escrita"
+- **Solução:** `chmod 755 apk/` ou recriar pasta
+
+### **3. LIMITE DE UPLOAD:**
+- ❌ upload_max_filesize muito baixo
+- **Solução:** Editar php.ini
+
+### **4. ERRO NO MOVE_UPLOADED_FILE:**
+- ❌ Arquivo não move para pasta
+- **Solução:** Verificar permissões e caminho
+
+### **5. CORS OU HEADERS:**
+- ❌ "Failed to fetch"
+- **Solução:** Verificar se está acessando via localhost
+
+🧪 TESTE AGORA:
+---------------
+
+### **TESTE 1:**
+1. ✅ Acesse `http://localhost/LEILAO/test_php.php`
+2. ✅ Confirme que PHP funciona
+3. ✅ Confirme permissões da pasta
+
+### **TESTE 2:**
+1. ✅ Abra admin → "APK do App"
+2. ✅ Faça upload do APK
+3. ✅ Abra console (F12)
+4. ✅ Veja logs detalhados
+
+### **TESTE 3:**
+1. ✅ Verifique se pasta apk/ tem arquivo app.apk
+2. ✅ Verifique se apk_info.json foi criado
+
+💡 SOLUÇÕES RÁPIDAS:
+--------------------
+
+### **SE PHP NÃO FUNCIONA:**
+```bash
+# Iniciar XAMPP
+# Acessar http://localhost
+```
+
+### **SE SEM PERMISSÃO:**
+```bash
+# No terminal, na pasta do projeto:
+chmod 755 apk/
+# OU deletar e recriar pasta apk/
+```
+
+### **SE LIMITE BAIXO:**
+```php
+// No php.ini:
+upload_max_filesize = 100M
+post_max_size = 100M
+max_execution_time = 300
+```
+
+### **SE ERRO CORS:**
+- ✅ Acessar via `http://localhost/LEILAO/`
+- ❌ NÃO via `file://`
+
+🎯 RESULTADO ESPERADO:
+----------------------
+
+### **✅ FUNCIONANDO:**
+- test_php.php mostra tudo OK
+- Upload mostra "APK salvo com sucesso!"
+- Pasta apk/ tem app.apk e apk_info.json
+
+### **❌ COM ERRO:**
+- Logs mostram erro específico
+- Fácil identificar causa
+- Solução direcionada
+
+📱 TESTE E ME INFORME OS LOGS! 📱✨
+
+**Agora temos debug completo!**
+- Teste test_php.php primeiro
+- Faça upload e veja logs
+- Me informe o que aparece no console
+
+🔧 DEBUG COMPLETO IMPLEMENTADO! 🔧
+

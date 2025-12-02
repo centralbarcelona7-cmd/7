@@ -1,0 +1,5 @@
+[2025-10-11T04:26:08+02:00] [upload_apk] Iniciando upload. Diretório APK: C:\xampp\htdocs\apk
+[2025-10-11T04:26:08+02:00] [upload_apk] SUCESSO: APK salvo. Nome original=app.apk Tamanho=7350124B
+[2025-10-11T04:37:11+02:00] [upload_apk] Iniciando upload. Diretório APK: C:\xampp\htdocs\apk
+[2025-10-11T04:37:11+02:00] [upload_apk] Removendo APK anterior em C:\xampp\htdocs\apk\app.apk
+[2025-10-11T04:37:11+02:00] [upload_apk] SUCESSO: APK salvo. Nome original=app.apk Tamanho=7350124B

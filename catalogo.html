@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Leilão de Veículos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-gavel"></i>
+                    <h1>Leilão Premium</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="catalogo.html" class="active">Catálogo</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="login.html" class="btn-login">Login</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Início</a> / <span>Catálogo</span>
+        </div>
+    </div>
+
+    <!-- Catálogo -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="catalog-header">
+                <h2>Catálogo de Veículos</h2>
+                <p>Encontre o veículo perfeito para você</p>
+            </div>
+
+            <div class="catalog-container">
+                <!-- Filtros -->
+                <aside class="filters-sidebar">
+                    <div class="filter-section">
+                        <h3>Filtros</h3>
+                        <button class="btn-clear-filters">Limpar Filtros</button>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4><i class="fas fa-tag"></i> Categoria</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="carros">
+                            <span>Carros</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="motos">
+                            <span>Motos</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="caminhoes">
+                            <span>Caminhões</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="utilitarios">
+                            <span>Utilitários</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4><i class="fas fa-dollar-sign"></i> Faixa de Preço</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="0-20000">
+                            <span>Até R$ 20.000</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="20000-50000">
+                            <span>R$ 20.000 - R$ 50.000</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="50000-100000">
+                            <span>R$ 50.000 - R$ 100.000</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="price" value="100000+">
+                            <span>Acima de R$ 100.000</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4><i class="fas fa-calendar"></i> Ano</h4>
+                        <select name="year-min" class="filter-select">
+                            <option value="">Ano Mínimo</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                        </select>
+                        <select name="year-max" class="filter-select">
+                            <option value="">Ano Máximo</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4><i class="fas fa-cogs"></i> Combustível</h4>
+                        <label class="filter-option">
+                            <input type="checkbox" name="fuel" value="gasolina">
+                            <span>Gasolina</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="fuel" value="etanol">
+                            <span>Etanol</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="fuel" value="flex">
+                            <span>Flex</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="fuel" value="diesel">
+                            <span>Diesel</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="fuel" value="eletrico">
+                            <span>Elétrico</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4><i class="fas fa-clock"></i> Status do Leilão</h4>
+                        <label class="filter-option">
+                            <input type="radio" name="status" value="all" checked>
+                            <span>Todos</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="status" value="ativo">
+                            <span>Ativos</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="status" value="finalizado">
+                            <span>Finalizados</span>
+                        </label>
+                    </div>
+                </aside>
+
+                <!-- Listagem de Veículos -->
+                <div class="catalog-content">
+                    <div class="catalog-toolbar">
+                        <div class="results-count">
+                            Mostrando <span id="results-count">0</span> resultados
+                        </div>
+                        <div class="sort-options">
+                            <label>Ordenar por:</label>
+                            <select id="sort-select">
+                                <option value="recent">Mais Recentes</option>
+                                <option value="price-asc">Menor Preço</option>
+                                <option value="price-desc">Maior Preço</option>
+                                <option value="ending-soon">Encerrando em Breve</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="vehicles-grid" id="vehicles-grid">
+                        <!-- Veículos serão carregados dinamicamente -->
+                    </div>
+
+                    <div class="pagination">
+                        <button class="btn-page" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+                        <div class="page-numbers" id="page-numbers"></div>
+                        <button class="btn-page" id="next-page"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre Nós</h3>
+                    <p>Somos uma plataforma especializada em leilões de veículos, oferecendo segurança e transparência em todas as transações.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> contato@leilaopremium.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leilão Premium. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/catalog.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Veículo - Leilão de Veículos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-gavel"></i>
+                    <h1>Leilão Premium</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="login.html" class="btn-login">Login</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Início</a> / <a href="catalogo.html">Catálogo</a> / <span id="breadcrumb-title">Veículo</span>
+        </div>
+    </div>
+
+    <!-- Detalhes do Veículo -->
+    <section class="vehicle-details">
+        <div class="container">
+            <div class="details-grid">
+                <!-- Galeria de Imagens -->
+                <div class="gallery-section">
+                    <div class="main-image">
+                        <img id="main-image" src="https://via.placeholder.com/800x600/4a90e2/ffffff?text=Veículo" alt="Veículo">
+                        <div class="image-navigation">
+                            <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="thumbnail-gallery" id="thumbnail-gallery">
+                        <!-- Thumbnails serão carregados dinamicamente -->
+                    </div>
+                </div>
+
+                <!-- Informações do Leilão -->
+                <div class="auction-info">
+                    <div class="vehicle-title">
+                        <h1 id="vehicle-title">Carregando...</h1>
+                        <div class="vehicle-badges">
+                            <span class="badge badge-featured">Destaque</span>
+                            <span class="badge badge-verified">Verificado</span>
+                        </div>
+                    </div>
+
+                    <div class="auction-timer">
+                        <div class="timer-label">Tempo Restante:</div>
+                        <div class="countdown" id="countdown">
+                            <div class="time-unit">
+                                <span class="time-value" id="days">00</span>
+                                <span class="time-label">Dias</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-value" id="hours">00</span>
+                                <span class="time-label">Horas</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-value" id="minutes">00</span>
+                                <span class="time-label">Min</span>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-value" id="seconds">00</span>
+                                <span class="time-label">Seg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bid-info">
+                        <div class="current-bid">
+                            <span class="bid-label">Lance Atual:</span>
+                            <span class="bid-value" id="current-bid">R$ 0,00</span>
+                        </div>
+                        <div class="bid-stats">
+                            <span><i class="fas fa-users"></i> <span id="bid-count">0</span> lances</span>
+                            <span><i class="fas fa-eye"></i> <span id="view-count">0</span> visualizações</span>
+                        </div>
+                    </div>
+
+                    <div class="bid-section">
+                        <div class="bid-form">
+                            <label>Seu Lance:</label>
+                            <div class="bid-input-group">
+                                <span class="currency">R$</span>
+                                <input type="number" id="bid-amount" placeholder="Digite seu lance" min="0" step="100">
+                                <button class="btn-bid" id="btn-place-bid">
+                                    <i class="fas fa-gavel"></i> Dar Lance
+                                </button>
+                            </div>
+                            <div class="bid-suggestions">
+                                <button class="btn-quick-bid" data-increment="500">+R$ 500</button>
+                                <button class="btn-quick-bid" data-increment="1000">+R$ 1.000</button>
+                                <button class="btn-quick-bid" data-increment="5000">+R$ 5.000</button>
+                            </div>
+                        </div>
+
+                        <div class="auction-actions">
+                            <button class="btn-favorite" id="btn-favorite">
+                                <i class="far fa-heart"></i> Favoritar
+                            </button>
+                            <button class="btn-share" id="btn-share">
+                                <i class="fas fa-share-alt"></i> Compartilhar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bid-history">
+                        <h3>Histórico de Lances</h3>
+                        <div class="bid-list" id="bid-history">
+                            <!-- Histórico será carregado dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Especificações do Veículo -->
+            <div class="vehicle-specs">
+                <h2>Especificações</h2>
+                <div class="specs-grid" id="specs-grid">
+                    <!-- Especificações serão carregadas dinamicamente -->
+                </div>
+            </div>
+
+            <!-- Descrição -->
+            <div class="vehicle-description">
+                <h2>Descrição</h2>
+                <div class="description-content" id="description">
+                    <p>Carregando descrição...</p>
+                </div>
+            </div>
+
+            <!-- Documentação e Condições -->
+            <div class="vehicle-documentation">
+                <h2>Documentação e Condições</h2>
+                <div class="docs-grid">
+                    <div class="doc-item">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Documentação</h3>
+                        <p id="doc-status">Completa</p>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Estado Geral</h3>
+                        <p id="condition">Excelente</p>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-tools"></i>
+                        <h3>Manutenção</h3>
+                        <p id="maintenance">Em dia</p>
+                    </div>
+                    <div class="doc-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Garantia</h3>
+                        <p id="warranty">90 dias</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Veículos Relacionados -->
+            <div class="related-vehicles">
+                <h2>Veículos Semelhantes</h2>
+                <div class="auction-grid" id="related-vehicles">
+                    <!-- Veículos relacionados serão carregados dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre Nós</h3>
+                    <p>Somos uma plataforma especializada em leilões de veículos, oferecendo segurança e transparência em todas as transações.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (11) 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> contato@leilaopremium.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leilão Premium. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Zoom da Imagem -->
+    <div id="image-zoom-modal" class="image-zoom-modal">
+        <span class="zoom-close">&times;</span>
+        <div class="zoom-content">
+            <img id="zoom-image" src="" alt="Imagem ampliada">
+            <div class="zoom-navigation">
+                <button class="zoom-nav-btn zoom-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="zoom-nav-btn zoom-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="zoom-counter">
+                <span id="zoom-current">1</span> / <span id="zoom-total">1</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/details.js"></script>
+</body>
+</html>
+

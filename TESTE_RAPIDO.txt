@@ -1,0 +1,78 @@
+🚀 TESTE RÁPIDO - CORREÇÃO DE IMAGENS
+=====================================
+
+PROBLEMA: Imagens não aparecem na tela do cliente
+SOLUÇÃO: Correção do sistema de localStorage
+
+📋 PASSOS PARA TESTAR:
+
+1. ABRIR O ADMIN:
+   - Vá para: admin.html
+   - Faça login com: admin / admin123
+
+2. ADICIONAR UM VEÍCULO COM IMAGENS:
+   - Clique em "Adicionar Veículo"
+   - Preencha os dados básicos
+   - Adicione pelo menos 3 imagens:
+     * Clique em "Escolher Arquivos" OU
+     * Cole URLs de imagens
+   - Salve o veículo
+
+3. VERIFICAR SE SALVOU:
+   - Abra o Console do navegador (F12)
+   - Procure por logs como:
+     "[INFO] X veículos salvos no localStorage"
+     "[DEBUG] Verificação: X veículos no localStorage"
+   - Deve mostrar as imagens salvas
+
+4. TESTAR NA TELA DO CLIENTE:
+   - Vá para: index.html
+   - Abra o Console (F12)
+   - Procure por logs como:
+     "[INFO] Carregando X veículos do localStorage"
+     "[DEBUG] Carregado: Marca Modelo - X imagens"
+   - As imagens devem aparecer nos cards
+
+5. TESTE ALTERNATIVO:
+   - Abra: teste_imagens.html
+   - Clique em "Verificar Storage"
+   - Deve mostrar os veículos com imagens
+   - Clique em "Recarregar Veículos"
+   - As imagens devem aparecer
+
+🔧 SE AINDA NÃO FUNCIONAR:
+
+1. LIMPAR TUDO:
+   - Abra o Console (F12)
+   - Digite: localStorage.clear()
+   - Recarregue a página
+
+2. TESTAR NOVAMENTE:
+   - Adicione um veículo no admin
+   - Verifique se aparece no teste_imagens.html
+
+3. VERIFICAR LOGS:
+   - Todos os arquivos agora usam localStorage diretamente
+   - Não mais StorageManager
+   - Logs detalhados em cada etapa
+
+📁 ARQUIVOS CORRIGIDOS:
+- js/admin.js: Salva diretamente no localStorage
+- js/script.js: Carrega diretamente do localStorage  
+- js/catalog.js: Carrega diretamente do localStorage
+- js/details.js: Carrega diretamente do localStorage
+- teste_imagens.html: Novo arquivo para debug
+
+✅ RESULTADO ESPERADO:
+- Imagens aparecem no admin ✅
+- Imagens aparecem no cliente ✅
+- Logs mostram carregamento correto ✅
+- Sistema funciona sem problemas ✅
+
+🚨 SE PERSISTIR O PROBLEMA:
+1. Verifique se o navegador suporta localStorage
+2. Verifique se não há bloqueio de CORS
+3. Use o teste_imagens.html para debug detalhado
+4. Verifique os logs no console
+
+💡 DICA: Sempre verifique o Console (F12) para ver os logs detalhados!

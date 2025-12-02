@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Imagens - Leilão</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; }
+        .vehicle-card { margin: 10px 0; padding: 15px; border: 1px solid #ccc; }
+        .vehicle-images { display: flex; gap: 10px; margin: 10px 0; }
+        .vehicle-images img { width: 100px; height: 75px; object-fit: cover; border: 1px solid #ddd; }
+        .debug-info { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .clear-btn { background: #dc3545; }
+        .clear-btn:hover { background: #c82333; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste de Imagens - Sistema de Leilão</h1>
+    
+    <div class="test-section">
+        <h2>📊 Status do LocalStorage</h2>
+        <div id="storage-status" class="debug-info">Carregando...</div>
+        <button onclick="checkStorage()">🔄 Verificar Storage</button>
+        <button onclick="clearStorage()" class="clear-btn">🗑️ Limpar Storage</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🚗 Veículos com Imagens</h2>
+        <div id="vehicles-display">Carregando veículos...</div>
+        <button onclick="loadVehicles()">🔄 Recarregar Veículos</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔍 Debug Detalhado</h2>
+        <div id="debug-info" class="debug-info">Clique em "Verificar Storage" para ver detalhes</div>
+    </div>
+
+    <script>
+        // Dados mock para teste
+        const mockVehicles = [
+            {
+                id: 1,
+                brand: 'Toyota',
+                model: 'Corolla',
+                year: 2022,
+                category: 'carros',
+                fuel: 'flex',
+                color: 'Prata',
+                mileage: 25000,
+                current_bid: 85000,
+                initial_price: 75000,
+                bid_count: 15,
+                view_count: 234,
+                end_date: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+                images: [
+                    'https://via.placeholder.com/800x600/4a90e2/ffffff?text=Toyota+Corolla+1',
+                    'https://via.placeholder.com/800x600/50c878/ffffff?text=Toyota+Corolla+2',
+                    'https://via.placeholder.com/800x600/f39c12/ffffff?text=Toyota+Corolla+3',
+                    'https://via.placeholder.com/800x600/e74c3c/ffffff?text=Toyota+Corolla+4'
+                ],
+                description: 'Toyota Corolla em excelente estado de conservação.',
+                documentation: 'Completa',
+                condition: 'Excelente',
+                maintenance: 'Em dia',
+                warranty: '90 dias',
+                status: 'ativo',
+                featured: true
+            }
+        ];
+
+        function checkStorage() {
+            const vehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
+            const statusDiv = document.getElementById('storage-status');
+            const debugDiv = document.getElementById('debug-info');
+            
+            let statusHtml = `<strong>Veículos no localStorage: ${vehicles.length}</strong><br>`;
+            let debugHtml = `<strong>Debug Detalhado:</strong><br>`;
+            
+            if (vehicles.length > 0) {
+                vehicles.forEach((vehicle, index) => {
+                    statusHtml += `${index + 1}. ${vehicle.brand} ${vehicle.model} - ${vehicle.images ? vehicle.images.length : 0} imagens<br>`;
+                    debugHtml += `<strong>Veículo ${index + 1}:</strong><br>`;
+                    debugHtml += `- ID: ${vehicle.id}<br>`;
+                    debugHtml += `- Marca/Modelo: ${vehicle.brand} ${vehicle.model}<br>`;
+                    debugHtml += `- Ano: ${vehicle.year}<br>`;
+                    debugHtml += `- Imagens: ${vehicle.images ? vehicle.images.length : 0}<br>`;
+                    if (vehicle.images && vehicle.images.length > 0) {
+                        debugHtml += `- URLs das imagens:<br>`;
+                        vehicle.images.forEach((img, imgIndex) => {
+                            debugHtml += `  ${imgIndex + 1}. ${img}<br>`;
+                        });
+                    }
+                    debugHtml += `<br>`;
+                });
+            } else {
+                statusHtml += 'Nenhum veículo encontrado no localStorage';
+                debugHtml += 'Nenhum veículo encontrado no localStorage';
+            }
+            
+            statusDiv.innerHTML = statusHtml;
+            debugDiv.innerHTML = debugHtml;
+            
+            console.log('[TESTE] Verificação do localStorage:', vehicles);
+        }
+
+        function loadVehicles() {
+            const vehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
+            const displayDiv = document.getElementById('vehicles-display');
+            
+            if (vehicles.length === 0) {
+                displayDiv.innerHTML = '<p>❌ Nenhum veículo encontrado no localStorage</p>';
+                return;
+            }
+            
+            let html = '';
+            vehicles.forEach(vehicle => {
+                html += `<div class="vehicle-card">`;
+                html += `<h3>${vehicle.brand} ${vehicle.model} (${vehicle.year})</h3>`;
+                html += `<p>Preço atual: R$ ${vehicle.current_bid?.toLocaleString('pt-BR') || 'N/A'}</p>`;
+                
+                if (vehicle.images && vehicle.images.length > 0) {
+                    html += `<div class="vehicle-images">`;
+                    vehicle.images.forEach(img => {
+                        html += `<img src="${img}" alt="Imagem do veículo" onerror="this.style.border='2px solid red'; this.alt='Erro ao carregar imagem';">`;
+                    });
+                    html += `</div>`;
+                    html += `<p>✅ ${vehicle.images.length} imagens carregadas</p>`;
+                } else {
+                    html += `<p>❌ Nenhuma imagem encontrada</p>`;
+                }
+                
+                html += `</div>`;
+            });
+            
+            displayDiv.innerHTML = html;
+            console.log('[TESTE] Veículos carregados:', vehicles);
+        }
+
+        function clearStorage() {
+            if (confirm('Tem certeza que deseja limpar o localStorage?')) {
+                localStorage.removeItem('vehicles');
+                checkStorage();
+                loadVehicles();
+                console.log('[TESTE] localStorage limpo');
+            }
+        }
+
+        function addTestVehicle() {
+            const testVehicle = {
+                id: Date.now(),
+                brand: 'Teste',
+                model: 'Carro Teste',
+                year: 2024,
+                category: 'carros',
+                fuel: 'gasolina',
+                color: 'Azul',
+                mileage: 0,
+                current_bid: 50000,
+                initial_price: 45000,
+                bid_count: 0,
+                view_count: 1,
+                end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                images: [
+                    'https://via.placeholder.com/800x600/007bff/ffffff?text=Teste+1',
+                    'https://via.placeholder.com/800x600/28a745/ffffff?text=Teste+2',
+                    'https://via.placeholder.com/800x600/dc3545/ffffff?text=Teste+3'
+                ],
+                description: 'Veículo de teste',
+                documentation: 'Completa',
+                condition: 'Nova',
+                maintenance: 'Em dia',
+                warranty: '1 ano',
+                status: 'ativo',
+                featured: false
+            };
+            
+            const vehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
+            vehicles.push(testVehicle);
+            localStorage.setItem('vehicles', JSON.stringify(vehicles));
+            
+            checkStorage();
+            loadVehicles();
+            console.log('[TESTE] Veículo de teste adicionado:', testVehicle);
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('[TESTE] Página de teste carregada');
+            checkStorage();
+            loadVehicles();
+        });
+    </script>
+</body>
+</html>

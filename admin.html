@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Leilão de Veículos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="admin-logo">
+            <i class="fas fa-gavel"></i>
+            <h2>Admin Panel</h2>
+        </div>
+        
+        <nav class="admin-nav">
+            <a href="#dashboard" class="admin-nav-item active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#vehicles" class="admin-nav-item" data-section="vehicles">
+                <i class="fas fa-car"></i>
+                <span>Veículos</span>
+            </a>
+            <a href="#auctions" class="admin-nav-item" data-section="auctions">
+                <i class="fas fa-gavel"></i>
+                <span>Leilões</span>
+            </a>
+            <a href="#users" class="admin-nav-item" data-section="users">
+                <i class="fas fa-users"></i>
+                <span>Usuários</span>
+            </a>
+            <a href="#bids" class="admin-nav-item" data-section="bids">
+                <i class="fas fa-hand-holding-usd"></i>
+                <span>Lances</span>
+            </a>
+            <a href="#reports" class="admin-nav-item" data-section="reports">
+                <i class="fas fa-chart-line"></i>
+                <span>Relatórios</span>
+            </a>
+            <a href="#apk-management" class="admin-nav-item" data-section="apk-management">
+                <i class="fas fa-mobile-alt"></i>
+                <span>APK do App</span>
+            </a>
+            <a href="#settings" class="admin-nav-item" data-section="settings">
+                <i class="fas fa-cog"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="admin-logout">
+            <a href="index.html">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <button class="btn-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="page-title">Dashboard</h1>
+            </div>
+            <div class="admin-header-right">
+                <div class="admin-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar...">
+                </div>
+                <div class="admin-notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </div>
+                <div class="admin-user">
+                    <img src="https://via.placeholder.com/40" alt="Admin">
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section class="admin-section active" id="dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #4a90e2;">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total de Veículos</h3>
+                        <p class="stat-value">250</p>
+                        <span class="stat-change positive">+12% este mês</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #50c878;">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Leilões Ativos</h3>
+                        <p class="stat-value">48</p>
+                        <span class="stat-change positive">+8% este mês</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #f39c12;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Usuários Ativos</h3>
+                        <p class="stat-value">1,234</p>
+                        <span class="stat-change positive">+15% este mês</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e74c3c;">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Receita Total</h3>
+                        <p class="stat-value">R$ 2.5M</p>
+                        <span class="stat-change positive">+22% este mês</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Leilões Recentes</h3>
+                    <div class="recent-auctions" id="recent-auctions">
+                        <!-- Carregado dinamicamente -->
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Atividade Recente</h3>
+                    <div class="recent-activity" id="recent-activity">
+                        <!-- Carregado dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vehicles Section -->
+        <section class="admin-section" id="vehicles">
+            <div class="section-toolbar">
+                <h2>Gerenciar Veículos</h2>
+                <button class="btn-primary" id="btn-add-vehicle">
+                    <i class="fas fa-plus"></i> Adicionar Veículo
+                </button>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Imagem</th>
+                            <th>Veículo</th>
+                            <th>Categoria</th>
+                            <th>Ano</th>
+                            <th>Preço Inicial</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vehicles-table">
+                        <!-- Carregado dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Auctions Section -->
+        <section class="admin-section" id="auctions">
+            <div class="section-toolbar">
+                <h2>Gerenciar Leilões</h2>
+                <button class="btn-primary" id="btn-add-auction">
+                    <i class="fas fa-plus"></i> Criar Leilão
+                </button>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Veículo</th>
+                            <th>Início</th>
+                            <th>Término</th>
+                            <th>Lance Atual</th>
+                            <th>Lances</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="auctions-table">
+                        <!-- Carregado dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- APK Management Section -->
+        <section class="admin-section" id="apk-management">
+            <div class="section-toolbar">
+                <h2>📱 Gerenciar APK do App</h2>
+                <div class="apk-status">
+                    <span class="status-indicator" id="apk-status">Não configurado</span>
+                </div>
+            </div>
+
+            <div class="apk-management-container">
+                <div class="apk-upload-section">
+                    <h3>Upload do APK</h3>
+                    <p>Faça upload do arquivo APK para disponibilizar download direto no site</p>
+                    
+                    <div class="upload-area" id="apk-upload-area">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h4>Arraste o APK aqui ou clique para selecionar</h4>
+                            <p>Formatos aceitos: .apk (máximo 100MB)</p>
+                            
+                            <button class="btn-secondary" onclick="document.getElementById('apk-file-input').click()">
+                                <i class="fas fa-folder-open"></i> Selecionar APK
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <form id="apk-upload-form" action="upload_apk_min.php" method="POST" enctype="multipart/form-data" target="_blank" style="margin-top: 1rem;">
+                        <input type="hidden" name="redirect" value="1">
+                        <!-- Input único para seleção do APK -->
+                        <input type="file" id="apk-file-input" name="apk" accept=".apk" style="display: none;">
+                    </form>
+                    <div class="apk-info" id="apk-info" style="display: none;">
+                        <h4>📱 APK Atual</h4>
+                        <div class="apk-details">
+                            <div class="detail-item">
+                                <strong>Nome:</strong> <span id="apk-name">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Tamanho:</strong> <span id="apk-size">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Última atualização:</strong> <span id="apk-date">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Status:</strong> <span id="apk-status-detail" class="status-active">Ativo</span>
+                            </div>
+                        </div>
+                        <div class="apk-actions">
+                            <button class="btn-primary" onclick="downloadCurrentApk()">
+                                <i class="fas fa-download"></i> Baixar APK
+                            </button>
+                            <button class="btn-danger" onclick="removeApk()">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                            <button class="btn-secondary" onclick="updateApk()">
+                                <i class="fas fa-sync"></i> Atualizar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="apk-stats-section">
+                    <h3>📊 Estatísticas de Download</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4 id="download-count">0</h4>
+                                <p>Downloads</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4 id="unique-users">0</h4>
+                                <p>Usuários Únicos</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4 id="last-week-downloads">0</h4>
+                                <p>Esta Semana</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Users Section -->
+        <section class="admin-section" id="users">
+            <div class="section-toolbar">
+                <h2>Gerenciar Usuários</h2>
+                <button class="btn-primary" id="btn-add-user">
+                    <i class="fas fa-plus"></i> Adicionar Usuário
+                </button>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>Data de Cadastro</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table">
+                        <!-- Carregado dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Bids Section -->
+        <section class="admin-section" id="bids">
+            <div class="section-toolbar">
+                <h2>Histórico de Lances</h2>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Leilão</th>
+                            <th>Usuário</th>
+                            <th>Valor</th>
+                            <th>Data/Hora</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bids-table">
+                        <!-- Carregado dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section class="admin-section" id="reports">
+            <h2>Relatórios</h2>
+            <div class="reports-grid">
+                <div class="report-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Relatório de Vendas</h3>
+                    <p>Exportar relatório mensal de vendas</p>
+                    <button class="btn-secondary">Gerar PDF</button>
+                </div>
+                <div class="report-card">
+                    <i class="fas fa-file-excel"></i>
+                    <h3>Relatório de Usuários</h3>
+                    <p>Exportar lista de usuários cadastrados</p>
+                    <button class="btn-secondary">Gerar Excel</button>
+                </div>
+                <div class="report-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Relatório Financeiro</h3>
+                    <p>Análise financeira completa</p>
+                    <button class="btn-secondary">Gerar Relatório</button>
+                </div>
+                <div class="report-card">
+                    <i class="fas fa-list"></i>
+                    <h3>Relatório de Leilões</h3>
+                    <p>Histórico completo de leilões</p>
+                    <button class="btn-secondary">Gerar Relatório</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="admin-section" id="settings">
+            <h2>Configurações</h2>
+            <div class="settings-container">
+                <div class="settings-card">
+                    <h3>Configurações Gerais</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>Nome do Site</label>
+                            <input type="text" value="Leilão Premium">
+                        </div>
+                        <div class="form-group">
+                            <label>Email de Contato</label>
+                            <input type="email" value="contato@leilaopremium.com.br">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input type="tel" value="(11) 1234-5678">
+                        </div>
+                        <button type="submit" class="btn-primary">Salvar</button>
+                    </form>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Configurações de Leilão</h3>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>Duração Padrão (dias)</label>
+                            <input type="number" value="7">
+                        </div>
+                        <div class="form-group">
+                            <label>Incremento Mínimo de Lance (%)</label>
+                            <input type="number" value="5">
+                        </div>
+                        <div class="form-group">
+                            <label>Comissão da Plataforma (%)</label>
+                            <input type="number" value="10">
+                        </div>
+                        <button type="submit" class="btn-primary">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para Adicionar/Editar Veículo -->
+    <div class="modal" id="vehicle-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Adicionar Veículo</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="vehicle-form" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Marca</label>
+                        <input type="text" name="brand" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Modelo</label>
+                        <input type="text" name="model" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Ano</label>
+                        <input type="number" name="year" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select name="category" required>
+                            <option value="carros">Carros</option>
+                            <option value="motos">Motos</option>
+                            <option value="caminhoes">Caminhões</option>
+                            <option value="utilitarios">Utilitários</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Combustível</label>
+                        <select name="fuel" required>
+                            <option value="flex">Flex</option>
+                            <option value="gasolina">Gasolina</option>
+                            <option value="etanol">Etanol</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="eletrico">Elétrico</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cor</label>
+                        <input type="text" name="color" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Quilometragem</label>
+                    <input type="number" name="mileage" required>
+                </div>
+                <div class="form-group">
+                    <label>Preço Inicial</label>
+                    <input type="number" name="initial_price" required>
+                </div>
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea name="description" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-images"></i> Imagens do Veículo</label>
+                    <div class="image-upload-section">
+                        <!-- Upload de arquivo -->
+                        <div class="upload-options">
+                            <button type="button" class="btn-upload" onclick="document.getElementById('file-upload').click()">
+                                <i class="fas fa-cloud-upload-alt"></i> Escolher Imagens
+                            </button>
+                            <input type="file" id="file-upload" accept="image/*" multiple style="display: none;" onchange="handleFileUpload(event)">
+                            
+                            <span style="margin: 0 1rem; color: #999;">ou</span>
+                            
+                            <!-- URL direta -->
+                            <div class="url-input-group">
+                                <input type="url" id="image-url-input" placeholder="Cole a URL da imagem" style="flex: 1; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;">
+                                <button type="button" class="btn-add-url" onclick="addImageFromUrl()">
+                                    <i class="fas fa-plus"></i> Adicionar URL
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Pré-visualização das imagens -->
+                        <div class="images-preview" id="images-preview">
+                            <!-- Imagens aparecerão aqui -->
+                        </div>
+                        
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
+                            <i class="fas fa-info-circle"></i> Arraste para reordenar. A primeira imagem será a capa.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
+

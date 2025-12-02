@@ -1,0 +1,184 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                   SISTEMA DE LEILÃO DE VEÍCULOS                                 ║
+║                        GUIA RÁPIDO DE INSTALAÇÃO                                ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+📋 PRÉ-REQUISITOS
+═════════════════
+✓ XAMPP instalado (ou WAMP/LAMP)
+✓ PHP 7.4 ou superior
+✓ MySQL 8.0 ou superior
+✓ Navegador moderno (Chrome, Firefox, Edge)
+
+🚀 INSTALAÇÃO PASSO A PASSO
+════════════════════════════
+
+1. INICIAR SERVIÇOS
+   ─────────────────
+   • Abra o XAMPP Control Panel
+   • Inicie o Apache (porta 80)
+   • Inicie o MySQL (porta 3306)
+   • Verifique se ambos estão com status verde
+
+2. CONFIGURAR BANCO DE DADOS
+   ──────────────────────────
+   a) Acesse o phpMyAdmin:
+      → http://localhost/phpmyadmin
+   
+   b) Execute o script principal:
+      → Clique em "Novo" para criar banco
+      → Nome: leilao_veiculos
+      → Encoding: utf8mb4_unicode_ci
+      → Clique em "SQL"
+      → Cole todo o conteúdo de: database/schema.sql
+      → Clique em "Executar"
+   
+   c) (OPCIONAL) Adicione dados de exemplo:
+      → Clique em "SQL" novamente
+      → Cole o conteúdo de: database/sample_data.sql
+      → Clique em "Executar"
+
+3. CRIAR PASTA DE LOGS
+   ────────────────────
+   • No diretório do projeto, crie uma pasta chamada "logs"
+   • Certifique-se de que ela tem permissão de escrita
+
+4. TESTAR INSTALAÇÃO
+   ──────────────────
+   a) Acesse no navegador:
+      → http://localhost/Minhas%20telas/LEILAO/
+   
+   b) Você deve ver:
+      ✓ Página inicial com leilões em destaque
+      ✓ Menu de navegação funcionando
+      ✓ Contador regressivo dos leilões
+   
+   c) Teste o login:
+      → Clique em "Login"
+      → Use: admin@leilaopremium.com.br
+      → Senha: admin123
+
+5. ACESSAR PAINEL ADMIN
+   ─────────────────────
+   → http://localhost/Minhas%20telas/LEILAO/admin.html
+   → Use as mesmas credenciais do passo 4c
+
+🔧 CONFIGURAÇÕES OPCIONAIS
+═══════════════════════════
+
+Editar Conexão do Banco:
+├─ Arquivo: config/database.php
+├─ Host: localhost (padrão)
+├─ Banco: leilao_veiculos
+├─ Usuário: root (padrão XAMPP)
+└─ Senha: (vazio no XAMPP)
+
+Personalizar Cores:
+├─ Arquivo: css/styles.css
+├─ Procure por: :root {
+└─ Altere as variáveis de cor
+
+⚠️ RESOLUÇÃO DE PROBLEMAS
+══════════════════════════
+
+PROBLEMA: Página em branco ou erro 500
+SOLUÇÃO:
+  → Verifique se Apache está rodando
+  → Confira os logs em: logs/php_errors.log
+  → Verifique permissões das pastas
+
+PROBLEMA: Erro ao conectar banco de dados
+SOLUÇÃO:
+  → Verifique se MySQL está rodando
+  → Confirme credenciais em config/database.php
+  → Certifique-se que o banco foi criado
+
+PROBLEMA: Imagens não aparecem
+SOLUÇÃO:
+  → Verifique sua conexão com internet
+  → As imagens de exemplo usam placeholder online
+  → Para usar imagens locais, crie pasta "images/"
+
+PROBLEMA: APIs não funcionam
+SOLUÇÃO:
+  → Verifique se mod_rewrite está ativo
+  → Confira o arquivo .htaccess
+  → Veja logs em: logs/api.log
+
+📝 ESTRUTURA DE ARQUIVOS
+═════════════════════════
+
+LEILAO/
+├── index.html          → Página inicial
+├── catalogo.html       → Catálogo de veículos
+├── detalhes.html       → Detalhes do veículo
+├── login.html          → Login e cadastro
+├── admin.html          → Painel administrativo
+├── .htaccess          → Configurações Apache
+├── README.md           → Documentação completa
+├── INSTALACAO.txt      → Este arquivo
+│
+├── api/                → APIs REST
+│   ├── vehicles.php    → CRUD de veículos
+│   └── auctions.php    → CRUD de leilões
+│
+├── config/             → Configurações
+│   └── database.php    → Conexão com BD
+│
+├── css/                → Estilos
+│   └── styles.css      → CSS principal
+│
+├── database/           → Scripts SQL
+│   ├── schema.sql      → Estrutura do banco
+│   └── sample_data.sql → Dados de exemplo
+│
+├── js/                 → JavaScript
+│   ├── script.js       → Funções globais
+│   ├── catalog.js      → Catálogo
+│   ├── details.js      → Detalhes
+│   ├── auth.js         → Autenticação
+│   └── admin.js        → Admin
+│
+└── logs/               → Logs do sistema
+    ├── database.log    → Logs do banco
+    ├── api.log         → Logs das APIs
+    └── php_errors.log  → Erros PHP
+
+✅ CHECKLIST DE INSTALAÇÃO
+═══════════════════════════
+
+□ XAMPP instalado e funcionando
+□ Apache iniciado (porta 80 livre)
+□ MySQL iniciado (porta 3306 livre)
+□ Banco de dados criado
+□ Script schema.sql executado
+□ Pasta logs/ criada
+□ Página inicial acessível
+□ Login funcionando
+□ Painel admin acessível
+□ Leilões aparecendo na home
+
+🎯 PRÓXIMOS PASSOS
+═══════════════════
+
+1. Altere a senha do administrador
+2. Configure seu logo e cores
+3. Adicione veículos reais
+4. Crie leilões
+5. Teste o sistema completo
+6. Personalize textos e informações
+
+📞 SUPORTE
+══════════
+
+Email: contato@leilaopremium.com.br
+Telefone: (11) 1234-5678
+
+Documentação completa: Veja README.md
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Desenvolvido com ❤️ para criar a melhor experiência em leilões de veículos!
+
+Última atualização: Outubro 2025
+
